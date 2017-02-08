@@ -20,24 +20,28 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        // настраиваем действия для галочки
         CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
-        final Button button = (Button) findViewById(R.id.button);
+        final Button connectButton = (Button) findViewById(R.id.connect_button);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked == true) {
-                    button.setEnabled(true);
-                } else {
-                    button.setEnabled(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) { // isChecked содержит true, если галочка поставлена, и false - в противном случае
+                if (isChecked == true) { // если галочка стоит
+                    connectButton.setEnabled(true); // включаем кнопку
+                } else { // иначе
+                    connectButton.setEnabled(false); // выключаем кнопку
                 }
             }
         });
+        // настраиваем действие по нажатию на кнопку
         final Context context = this;
-        button.setOnClickListener(new View.OnClickListener() {
+        connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // запускаем главную активность
                 Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
+                // закрываем стартовую активность
                 finish();
             }
         });
