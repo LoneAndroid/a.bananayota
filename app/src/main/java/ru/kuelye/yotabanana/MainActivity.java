@@ -1,7 +1,12 @@
 package ru.kuelye.yotabanana;
 
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -19,14 +24,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // находим текстовое поле для стоимость пакета в рублях
+        // заполняем ActionBar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Баланс 350 \u20BD");
+
+        // находим текстовые поля
         roublesTextView = (TextView) findViewById(R.id.priceTextView);
+        final TextView minutesTextView = (TextView) findViewById(R.id.minutesTextView);
         // настраиваем действие при движении ползунка
         SeekBar minutesSeekBar = (SeekBar) findViewById(R.id.seekBar);
         minutesSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) { // progress содержит позицию ползунка, 0 - крайняя левая
                 minutes = progress * 200 + 200; // считаем минуты и сохраняем в глобальную переменную
+                minutesTextView.setText(minutes + " минут");
                 updateRoubles(); // обновляем рубли
             }
 
@@ -50,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
                 updateRoubles(); // обновляем рубли
             }
         });
+
+        // устанавливаем начальные значения
+        minutes = 600;
+        smsEnabled = false;
+        minutesSeekBar.setProgress(2);
+        smsSwitch.setChecked(false);
+        updateRoubles();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // создаём меню
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_activity_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) { // если нажали на
+            case R.id.char_item: // кнопку перехода в чат
+                // переходим туда
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+                // возвращаем true, мол, нажатие обработано
+                return true;
+            default:
+                return true;
+        }
     }
 
     /**

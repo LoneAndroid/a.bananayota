@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/gradient"
-    >
+    android:background="@drawable/gradient">
 
     <TextView
         android:id="@+id/priceTextView"
@@ -41,6 +41,7 @@
         android:background="#b2c2c8" />
 
     <TextView
+        android:id="@+id/minutesTextView"
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
         android:textSize="28sp"
         android:text="600 минут" />
 
-    <SeekBar
+    <android.support.v7.widget.AppCompatSeekBar
         android:id="@+id/seekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
@@ -58,7 +59,8 @@
         android:layout_marginRight="52dp"
         android:layout_marginTop="12dp"
         android:max="4"
-        android:progress="2" />
+        android:progress="2"
+        app:tickMark="@drawable/seekbar_tick_mark" />
 
     <TextView
         android:gravity="center_horizontal"
@@ -69,13 +71,20 @@
         android:textSize="12sp"
         android:text="Звонки на других операторов по России" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="18dp"
+        android:background="#d8d8d8" />
+
     <Switch
         android:id="@+id/switch1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Безлимитные SMS за 50 рублей" />
-
 </LinearLayout>
