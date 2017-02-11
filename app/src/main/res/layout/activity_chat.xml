@@ -16,12 +16,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border"
         >
 
         <EditText
             android:id="@+id/editText"
-            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -30,7 +28,6 @@
             android:layout_marginBottom="12dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Напишите сообщение"
             android:textSize="16sp"
             android:imeOptions="actionDone"
             />
